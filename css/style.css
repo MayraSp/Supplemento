@@ -271,33 +271,33 @@ nav a {
 .sectOne {
     background-image: linear-gradient( rgba(20, 20, 20, .1),
     rgba(20, 20, 20, .7)),
-    url("/img/Supplemento1.jpg");
+    url("/Supplemento/img/Supplemento1.jpg");
 }
 
 .sectTwo {
-    background-image: url("/img/img5.jpg");
+    background-image: url("/Supplemento/img/img5.jpg");
     height: 300px;
 }
 
 .sectThree {
-    background-image: url("/img/Supplemento4.jpg");
+    background-image: url("/Supplemento/img/Supplemento4.jpg");
     color: #FFFFFF;
     height: 1600px;
 }
 
 .sectFour {
-    background-image: url("/img/Supplemento2.jpg");
+    background-image: url("/Supplemento/img/Supplemento2.jpg");
     height: 300px;
 }
 
 .sectFive {
-    background-image: url("/img/Supplemento5.jpg");
+    background-image: url("/Supplemento/img/Supplemento5.jpg");
     height: 300px;
 }
 
 .sectSix {
     background-image: linear-gradient( rgba(20, 20, 20, .1),
-    rgba(20, 20, 20, .7)), url("/img/victor-freitas-667455-unsplash.jpg");
+    rgba(20, 20, 20, .7)), url("/Supplemento/img/victor-freitas-667455-unsplash.jpg");
     height: 300px;
 }
 
