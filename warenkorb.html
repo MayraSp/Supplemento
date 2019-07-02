@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Supplemento AG</title>
+
+
+    <link rel="stylesheet" href="/css/dc.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("a").on('click', function(event) {
+                if (this.hash !== "") {
+                    event.preventDefault();
+                    var hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 800, function() {
+                        window.location.hash = hash;
+                    });
+                }
+            });
+        });
+
+    </script>
+
+    <script src="/js/d3.min.js"></script>
+    <script src="/js/crossfilter.min.js"></script>
+    <script src="/js/dc.js"></script>
+    <script src="/js/underscore-min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script type="text/javascript">
+        $("document").ready(function() {
+
+            $("#sortable").sortable();
+            $("#sortable").disableSelection();
+            $("#control-row").sortable();
+            $("#control-row").disableSelection();
+            $("#control-row1").sortable();
+            $("#control-row1").disableSelection();
+            $("#control-row2").sortable();
+            $("#control-row2").disableSelection();
+        });
+
+        
+    </script>
+
+
+</head>
+
+<body>
+
+   <!-- <nav>
+        <a href="#HOME" style="text-decoration: none;">HOME</a>
+        <a href="#ABOUT" style="text-decoration: none;">PRODUKT</a>
+        <a href="#VISUALISIERUNG" style="text-decoration: none;">ÜBER UNS</a>
+       <!-- <a href="#INTERPRETATION" style="text-decoration: none;">INTERPRETATION</a>
+        <a href="#STORY" style="text-decoration: none;">STORY</a>
+        <a href="#KONTAKT" style="text-decoration: none;">KONTAKT</a>
+    </nav>-->
+   <!-- <div class="section sectOne" id="HOME">
+        <br/><br/><br/>
+        <h1 style="margin-bottom:0px;">SUPPLEMENTO AG</h1> <br/>
+        <h2>Qualität - Sicherheit - Schnelligkeit</h2>
+
+        <h5>Motiviert zu trainieren... dem Fett an den Kragen zu gehen... oder mehr Muskeln zu bekommen?     
+            <br/> Dann sind Sie bei uns richtig!
+        </h5>
+    </div>
+
+    <!--<div class="subSection">
+       <img width=40% height=20% src="/img/LogoTransparent.png" alt="Logo Statistisches Amt des Kantons Basel-Stadt" style="float:center">
+    </div> -->
+
+    <div class="section sectSix" id="Warenkorb">
+        <h1>Warenkorb</h1>
+    </div>
+
+    <div class="subSection" style="float:left;">
+    <h3 >Der Warenkorb ist leer.</h3>
+    </div>
+   
+    <table style="color:#666; font-size:16px; width: 100%; float: left;">
+        <tr>
+            <td>0 Produkte ausgewählt <hr></td> <td>0 CHF <hr></td><td><hr></td>
+            </tr>
+    
+   <tr>
+        <td><b>Total</b></td><td><b>0 CHF</b></td><td></td>
+        </tr>
+        </table>
+    
+    <br/><br/><br/><div style="padding-left: 80px; padding-top: 200px;"><button id="myBtn" style="float: left; background-color:#666; color:white; padding: 10px;">JETZT BEZAHLEN</button><br/>  <br/>  <br/> <a href="index.html" style="text-decoration: underline; color:red;">Zurück zur Homepage</a></div>
+    
+    <div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Der Warenkorb ist leer, bitte wählen Sie ein Produkt aus.</p>
+  </div>
+
+    
+      <script type="text/javascript">
+        // Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+} 
+        </script>
+    
+        
+       
+        <!--<div style="float:left;"><img src="/img/Produkt.JPG" alt="Interpretation" style="width:50%; float:left;"><br/><br/><h3 style="font-size: 36px;text-align: left;">PERFORMANCE WHEY, VANILLE, PULVER</h3><br/><img src="/img/Sterne.JPG" alt="Interpretation" style="width:13%; float:left;" id="myBtn2"><p style="font-size: 18px; text-align:left;">(0)</p>
+            <p style="text-align: left;">- Mindestens 21g Eiweiss pro Person <br/>- Über 4.7g BCAAs pro Portion <br/>- Ohne Aspartam und Konservierungsstoffe</p>
+            <p style="text-align: left;"><font style="color: white;">- </font>Geschmack: Vanille <br/><font style="color: white;">- </font>Menge: 1'000g</p>
+           <br/> <h3 style="font-size: 36px;text-align: left;">CHF 20.79</h3>
+          <!--  <img src="/img/Beschrieb.JPG" alt="Interpretation" style="width:50%;">--><!--<br/><button id="myBtn" style="float: left; background-color:#666; color:white; padding: 10px;">IN DEN WARENKORB</button><br/><br/><p style="text-align: left;">inkl. MwSt 	&amp; zzgl. Versandkosten</p></div>
+        
+       <div id="myModal2" class="modal">
+
+  <!-- Modal content -->
+ <!-- <div class="modal-content">
+    <span class="close2">&times;</span>
+    <p>Es sind keine Bewertungen vorhanden.</p>
+  </div>
+
+</div>
+        
+        <div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <!-- <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Dieses Produkt ist im Moment leider ausverkauft.</p>
+  </div>
+
+</div>
+        
+        <div style="float:center;"><img src="/img/Eigenschaften.JPG" alt="Interpretation" style="width:75%;"></div> <br/>
+        <div style="float:left;"><img src="/img/Baer.JPG" alt="Interpretation" style="width:50%;"><img src="/img/Performance.JPG" alt="Interpretation" style="width:50%;"></div> <br/>
+         <div style="float:left;"><img src="/img/Warum.JPG" alt="Interpretation" style="width:50%;"><img src="/img/Vergleich.JPG" alt="Interpretation" style="width:50%;"></div><br/>
+         <div style="float:left;"><img src="/img/Frau.JPG" alt="Interpretation" style="width:50%;"><img src="/img/Bringt.JPG" alt="Interpretation" style="width:50%;"></div><br/>
+         <div style="float:left;"><img src="/img/Ausmachen.JPG" alt="Interpretation" style="width:100%;"></div><br/>
+         <div style="float:left;"><img src="/img/Zutaten.JPG" alt="Interpretation" style="width:100%;"></div><br/>
+         <div style="float:left;"><img src="/img/Anwendung.JPG" alt="Interpretation" style="width:100%;"></div>
+        <br/>
+         <div style="float:left;"><img src="/img/Naehrwerttabelle.JPG" alt="Interpretation" style="width: 70%; float:left;"></div><br/>
+         <div style="float:left;"><img src="/img/Dosierung.JPG" alt="Interpretation" style="width:100%;"></div><p></p>
+<p></p>
+        
+        
+          <script type="text/javascript">
+        // Get the modal
+var modal = document.getElementById("myModal2");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn2");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close2")[0];
+
+// When the user clicks on the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal2.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal2.style.display = "none";
+  }
+} 
+        </script>
+        
+        <script type="text/javascript">
+        // Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+} 
+        </script>
+        <!--<p>Im Rahmen der Vorlesung „Open Data“ der Universität Bern und in Zusammenarbeit mit dem Statistischen Amt des Kantons Basel-Stadt wurden die <a href=https://github.com/MayraSp/Jugendbefragung/raw/master/OGD_Jugendbefragung_2009_2013.xlsx target="_blank" style="color:#666; text-decoration:underline;">Daten</a> der Jugendbefragungen visualisiert. Die <a href=http://www.statistik.bs.ch/befragungen/kantonal/jugendbefragung/ target="_blank" style="color:#666; text-decoration:underline;">Jugendbefragung</a> erfolgt mittels <a href=http://www.statistik.bs.ch/dam/jcr:ab0bedb8-1a92-4d7f-b5a0-58233a8d3fcb/FB-Jugend-2013.pdf/ target="_blank" style="color:#666;text-decoration:underline;">Fragebogen</a> durch das <a href=http://www.statistik.bs.ch// target="_blank" style="color:#666;text-decoration:underline;">Statistische Amt des Kantons Basel-Stadt</a> in diversen, zufällig ausgewählten Basler Schulen. Durchgeführt wurden diese Erhebungen in den Jahren 2009, 2013 und 2017 mit Jugendlichen zwischen 12 bis 17 Jahren. Da der Zugang zu Kindern und Jugendlichen komplex sein kann, wurden diese Erhebungen in den Schulen durchgeführt, wo die Teilnehmer bei Fragen und Unklarheiten eine Ansprechperson zur Verfügung hatten. Indem die Schüler ca. 75 Fragen zu diversen Themen beantworten, können sie durch die Befragung ihre Bedürfnisse, Wünsche und Ansprüche mitteilen. Anhand der Antworten der Jugendlichen kann man schliesslich sehen, wo es Kritik und Probleme gibt, um so gemeinsam eventuelle Verbesserungsmöglichkeiten ausarbeiten zu können. Da die Fragenvielfalt im Fragebogen sehr gross ist, haben wir uns für die Visualisierung im Folgenden vor allem mit den Sorgen und Wünschen der Jugendlichen auseinandergesetzt. Da die Daten vom Jahr 2017 beim Statistischen Amt noch in Arbeit sind und erst Mitte Juni veröffentlicht werden, folgt die Implementierung dieser Einträge in der Visualisierung dementsprechend auch erst nach der Freigabe dieser Daten. Die Visualisierung bietet die Möglichkeit, alle weiteren Befragungsjahre problemlos zu ergänzen, oder auch die Fragenvielfalt zu erweitern. Komplexe Fragestellungen aus verschiedenen Befragungen können so kombiniert werden. Die Visualisierung ermöglicht es, trockene Datenlisten so darzustellen, dass diese von jungen bis alten, professionellen wie auch privaten Menschen, spielerisch einfach zu erkunden und spannende Zusammenhänge zu identifizieren.
+            <br/> <br/> Viel Spass beim Entdecken!</p>-->
+ <!--    </div>
+
+    <div class="section sectFive" id="VISUALISIERUNG">
+        <h1>ÜBER UNS</h1>
+    </div>
+
+    <div class="subSectionTwo">
+      <div class="subSection">
+          <h3>Entdecke die Welt von Supplemento!</h3>
+          <h3><br/><b>Unsere Werte</b></h3>
+          <br/><table style="color:#666;">
+              <colgroup>
+    <col width="33%">
+    <col width="33%">
+    <col width="33%">
+  </colgroup>
+  <tr>
+    <td><img src="/img/Qualitaet.jpg" alt="Interpretation" style="width:100%; float:center;"></td>
+    <td><img src="/img/Sicherheit.jpg" alt="Interpretation" style="width:94%; float:inherit;"></td>
+    <td><img src="/img/Schnelligkeit.jpg" alt="Interpretation" style="width:94%; float:left;"></td>
+  </tr>
+  <tr>
+      <td><b><h3><br/><br/>Qualität</h3></b></td>
+    <td><b><h3><br/><br/>Sicherheit</h3></b></td>
+    <td><b><h3><br/><br/>Schnelligkeit</h3></b></td>
+   </tr>
+   <tr>
+     <td><p>Die Qualität wird durch die sorgfältige Auswahl der Produkte ausgezeichnet!</p></td>
+     <td><p><br/>Das Produkt unterliegt der Analyse und der Zulassungskontrolle für den Verkauf im jeweiligen Land</p></td>
+     <td><p><br/>Ihre Zeit ist kostbar, deshalb sind wir bestrebt die Schnellsten zu sein. Wir liefern innerhalb von 24 Stunden per Schweizerischer Post.</p></td>
+   </tr>
+</table>
+        </div>
+        <!--<div class="container-fluid">
+            <br/>
+            <!-- Für das herunterklappbare Feld "Beschreibung" -->
+ <!--           <button class="accordion">Bedienungsanleitung</button>
+            <div class="panel">
+                <p style="text-align:left;">Die Visualisierung besteht aus Donut-Diagrammen, welche die demographischen Merkmale enthalten, und aus Balkendiagrammen, welche die von den Schülern gegebenen Antworten enthalten. Dadurch, dass alle Daten zusammenhängen, kann man beliebige Filteroptionen wählen. Entscheidet man sich beispielsweise dafür, nur die weiblichen Schülerinnen im Alter von 12-15 Jahren zu berücksichtigen, kann man das ganz einfach anwählen und alles andere passt sich direkt daran an. Umgekehrt kann man auch eine Antwort in den Balkendiagrammen aussuchen, um beispielsweise zu sehen, welche Personen so geantwortet haben. Damit das Erkunden der Daten einfacher ist, wurden noch folgende Elemente in die Visualisierung eingebaut:</p>
+
+                <p style="text-align:left;"><b>Drag and Drop</b><br/>Mit einfacher «Drag and Drop» Funkitonalität können die Balkendiagramme und Donut-Charts einfach in die gewünschte Reihenfolge gebracht werden. Dazu einfach auf den jeweiligen Titel oder die Frage klicken und an die gewünschte Position verschieben.</p>
+                <p style="text-align:left;"><b>Filter zurücksetzen</b><br/>Gesetzte Filter können ganz einfach jeweils einzeln neben den Fragen bzw. Merkmalen zurückgesetzt werden. Falls alle bisher gesetzten Filtermöglichkeiten gelöscht werden sollen, findet sich oben eine Funktion «Alle Filter löschen».</p>
+                <p style="text-align:left;"><b>Zahlenanzeige</b><br/>Indem über ein einzelnes «Kuchenstück» im Kuchendiagramm gefahren und kurz gewartet wird, erscheint die Anzahl der jeweils darin enthaltenen Einträge, um diese besser vergleichen zu können.</p>
+                <p style="text-align: left;"><b>Mehrere Jahre</b><br/>Es besteht die Möglichkeit, mehrere Jahre auszuwählen, die beispielsweise vor oder nach einem bestimmten (politischen, etc.) Ereignis sind. So kann man sehen, ob und inwiefern dieses Ereignis die Jugendlichen beeinflusst hat.</p>
+
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 dc-data-count dc-chart" id="data-count">
+                    <h6>
+                        <font weight="bold">JUGENDBEFRAGUNG</font>
+                        <small>
+                    <span class="filter-count"> Filter ausgewählt</span> |
+                    <a id="all" class="reset-filter"><font color="#F79F81">Alle zurücksetzen</font></a> <span class="filter"></span>
+                </small>
+                    </h6> <br/>
+                </div>
+            </div>
+-->
+
+
+            <!--<div class="clearfix visible-md visible-lg"></div>-->
+
+ <!--           <div class="row" id="control-row">
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <div class="TitelChart">
+                        <h4>Geschlecht
+                            <small><a id="Geschlecht" class="reset-filter"><font color="#F79F81">zurücksetzen</font></a></small>
+                        </h4>
+                    </div>
+                    <div class="dc-chart" id="chart-Geschlecht"></div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <div class="TitelChart">
+                        <h4>Alter
+                            <small><a id="Alter" class="reset-filter"><font color="#F79F81">zurücksetzen</font></a></small>
+                        </h4>
+                    </div>
+                    <div class="dc-chart" id="chart-Alter"></div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <div class="TitelChart">
+                        <h4>Schultyp
+                            <small><a id="Schultyp" class="reset-filter"><font color="#F79F81">zurücksetzen</font></a></small>
+                        </h4>
+                    </div>
+                    <div class="dc-chart" id="chart-Schultyp"></div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <div class="TitelChart">
+                        <h4>Befragungsjahr
+                            <small><a id="Befragungsjahr" class="reset-filter"><font color="#F79F81">zurücksetzen</font></a></small>
+                        </h4>
+                    </div>
+                    <div class="dc-chart" id="chart-Befragungsjahr"></div>
+                </div>
+
+
+
+
+
+
+
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <div class="TitelChart">
+                        <h4>Welches ist dein Lieblingsfach?
+                            <small><a id="Lieblingsfach" class="reset-filter"><font color="#F79F81">zurücksetzen</font></a></small>
+                        </h4>
+                    </div>
+                    <div class="dc-chart" id="chart-Lieblingsfach"></div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <div class="TitelChart">
+                        <h4>Wie gefällt es dir in der Schule?
+                            <small><a id="GefallenSchule" class="reset-filter"><font color="#F79F81">zurücksetzen</font></a></small>
+                        </h4>
+                    </div>
+                    <div class="dc-chart" id="chart-GefallenSchule"></div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <div class="TitelChart">
+                        <h4>Was würdest du in der Schule gerne verändern?
+                            <small><a id="AendernSchule" class="reset-filter"><font color="#F79F81">zurücksetzen</font></a></small>
+                        </h4>
+                    </div>
+                    <div class="dc-chart" id="chart-AendernSchule"></div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <div class="TitelChart">
+                        <h4>Machst du dir Sorgen über deine schulischen Leistungen?
+                            <small><a id="SorgenSchule" class="reset-filter"><font color="#F79F81">zurücksetzen</font></a></small>
+                        </h4>
+                    </div>
+                    <div class="dc-chart" id="chart-SorgenSchule"></div>
+                </div>
+
+
+
+
+
+
+
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <div class="TitelChart">
+                        <h4>Was ist dein Berufswunsch?
+                            <small><a id="Berufswunsch" class="reset-filter"><font color="#F79F81">zurücksetzen</font></a></small>
+                        </h4>
+                    </div>
+                    <div class="dc-chart" id="chart-Berufswunsch"></div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <div class="TitelChart">
+                        <h4>Wo - egal wo auf der Welt - würdest du gerne leben?
+                            <small><a id="Wohnortwunsch" class="reset-filter"><font color="#F79F81">zurücksetzen</font></a></small>
+                        </h4>
+                    </div>
+                    <div class="dc-chart" id="chart-Wohnortwunsch"></div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <div class="TitelChart">
+                        <h4>Machst du dir Sorgen über deine Lehrstelle/Studienplatz?
+                            <small><a id="SorgenAusbildung" class="reset-filter"><font color="#F79F81">zurücksetzen</font></a></small>
+                        </h4>
+                    </div>
+                    <div class="dc-chart" id="chart-SorgenAusbildung"></div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <div class="TitelChart">
+                        <h4>Hast du familiäre Sorgen?
+                            <small><a id="SorgenFamilie" class="reset-filter"><font color="#F79F81">zurücksetzen</font></a></small>
+                        </h4>
+                    </div>
+                    <div class="dc-chart" id="chart-SorgenFamilie"></div>
+                </div>
+
+
+
+
+
+                <!-- Hier hat man die Möglichkeit, weitere Fragen hinzuzufügen:
+<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <div class="TitelChart">
+                        <h4>
+                            <small><font color="#F79F81"></font></small>
+                        </h4>
+                    </div>
+                    <div style="height: 210px;"></div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <div class="TitelChart">
+                        <h4>
+                            <small><font color="#F79F81"></font></small>
+                        </h4>
+                    </div>
+                    <div style="height: 210px;"></div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <div class="TitelChart">
+                        <h4>Machst du dir Sorgen wegen deiner finanziellen Situation?
+                            <small><a id="SorgenFinanzen" class="reset-filter"><font color="#F79F81">zurücksetzen</font></a></small>
+                        </h4>
+                    </div>
+                    <div class="dc-chart" id="chart-SorgenFinanzen"></div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <div class="TitelChart">
+                        <h4>Hast du gesundheitliche Sorgen?
+                            <small><a id="SorgenGesundheit" class="reset-filter"><font color="#F79F81">zurücksetzen</font></a></small>
+                        </h4>
+                    </div>
+                    <div class="dc-chart" id="chart-SorgenGesundheit"></div>
+                </div>
+              kann nicht einbezogen werden, da in manchen Jahren mit einer Ordinalskala gearbeitet wurde und in anderer Jahren lediglich die Antworten Ja/Nein erfasst worden sind
+            <div class="col-md-3">
+                <h4>Machst du dir Sorgen über deine Beziehung?
+                    <small><a id="SorgenBeziehung" class="reset-filter"><font color="#F79F81">zurücksetzen</font></a></small>
+                </h4>
+                <div class="dc-chart" id="chart-SorgenBeziehung"></div>
+            </div>
+
+            -->
+
+
+<!--
+
+            </div>
+            <br/> <br/>
+        </div>
+
+
+
+
+
+        <script type="text/javascript">
+            d3.json('/data/Schule_Random.json', function(error, data) {
+                console.log(data);
+                var SchuleData = data.Schulen;
+
+                _.each(SchuleData, function(d) {
+                    d.AnzahlRandom = +d.AnzahlRandom;
+                });
+
+                var ndx = crossfilter(data);
+
+                var GeschlechtDim = ndx.dimension(dc.pluck('Geschlecht'));
+                var AlterDim = ndx.dimension(dc.pluck('Alter'));
+                var SchultypDim = ndx.dimension(dc.pluck('Schultyp'));
+                var BefragungsjahrDim = ndx.dimension(dc.pluck('Befragungsjahr'));
+
+
+
+
+                var GefallenSchuleDim = ndx.dimension(function(d) {
+                    return d.GefallenSchule;
+                });
+                var AendernSchuleDim = ndx.dimension(function(d) {
+                    return d.AendernSchule;
+                });
+                var LieblingsfachDim = ndx.dimension(function(d) {
+                    return d.Lieblingsfach;
+                });
+                var BerufswunschDim = ndx.dimension(function(d) {
+                    return d.Berufswunsch;
+                });
+
+                var SorgenSchuleDim = ndx.dimension(function(d) {
+                    return d.SorgenSchule;
+                });
+                var SorgenAusbildungDim = ndx.dimension(function(d) {
+                    return d.SorgenAusbildung;
+                });
+                var SorgenFamilieDim = ndx.dimension(function(d) {
+                    return d.SorgenFamilie;
+                });
+                var SorgenBeziehungDim = ndx.dimension(function(d) {
+                    return d.SorgenBeziehung;
+                });
+                var SorgenFinanzenDim = ndx.dimension(function(d) {
+                    return d.SorgenFinanzen;
+                });
+                var SorgenGesundheitDim = ndx.dimension(function(d) {
+                    return d.SorgenGesundheit;
+                });
+                var WohnortwunschDim = ndx.dimension(function(d) {
+                    return d.Wohnortwunsch;
+                });
+
+
+
+
+                var all = ndx.groupAll().reduceSum(function(d) {
+                    return d['Anzahl Random']
+                });
+
+
+                var countPerGeschlecht = GeschlechtDim.group().reduceSum(function(d) {
+                    return d['Anzahl Random']
+                });
+                var countPerAlter = AlterDim.group().reduceSum(function(d) {
+                    return d['Anzahl Random']
+                });
+                var countPerSchultyp = SchultypDim.group().reduceSum(function(d) {
+                    return d['Anzahl Random']
+                });
+                var countPerBefragungsjahr = BefragungsjahrDim.group().reduceSum(function(d) {
+                    return d['Anzahl Random']
+                });
+                var countPerGefallenSchule = GefallenSchuleDim.group().reduceSum(function(d) {
+                    return d['Anzahl Random']
+                });
+                var countPerAendernSchule = AendernSchuleDim.group().reduceSum(function(d) {
+                    return d['Anzahl Random']
+                });
+                var countPerLieblingsfach = LieblingsfachDim.group().reduceSum(function(d) {
+                    return d['Anzahl Random']
+                });
+                var countPerBerufswunsch = BerufswunschDim.group().reduceSum(function(d) {
+                    return d['Anzahl Random']
+                });
+                var countPerSorgenSchule = SorgenSchuleDim.group().reduceSum(function(d) {
+                    return d['Anzahl Random']
+                });
+                var countPerSorgenAusbildung = SorgenAusbildungDim.group().reduceSum(function(d) {
+                    return d['Anzahl Random']
+                });
+                var countPerSorgenFamilie = SorgenFamilieDim.group().reduceSum(function(d) {
+                    return d['Anzahl Random']
+                });
+                var countPerSorgenBeziehung = SorgenBeziehungDim.group().reduceSum(function(d) {
+                    return d['Anzahl Random']
+                });
+                var countPerSorgenFinanzen = SorgenFinanzenDim.group().reduceSum(function(d) {
+                    return d['Anzahl Random']
+                });
+                var countPerSorgenGesundheit = SorgenGesundheitDim.group().reduceSum(function(d) {
+                    return d['Anzahl Random']
+                });
+                var countPerWohnortwunsch = WohnortwunschDim.group().reduceSum(function(d) {
+                    return d['Anzahl Random']
+                });
+
+
+
+                var GeschlechtChart = dc.pieChart('#chart-Geschlecht');
+                var AlterChart = dc.pieChart('#chart-Alter');
+                var SchultypChart = dc.pieChart('#chart-Schultyp');
+                var BefragungsjahrChart = dc.pieChart('#chart-Befragungsjahr');
+                var GefallenSchuleChart = dc.rowChart('#chart-GefallenSchule');
+                var AendernSchuleChart = dc.rowChart('#chart-AendernSchule')
+                    .rowsCap(8)
+                    .othersGrouper(false);
+                var LieblingsfachChart = dc.rowChart('#chart-Lieblingsfach');
+                var BerufswunschChart = dc.rowChart('#chart-Berufswunsch')
+                    .rowsCap(8)
+                    .othersGrouper(false);;
+                var SorgenSchuleChart = dc.rowChart('#chart-SorgenSchule');
+                var SorgenAusbildungChart = dc.rowChart('#chart-SorgenAusbildung');
+                var SorgenFamilieChart = dc.rowChart('#chart-SorgenFamilie');
+                var SorgenBeziehungChart = dc.rowChart('#chart-SorgenBeziehung');
+                var SorgenFinanzenChart = dc.rowChart('#chart-SorgenFinanzen');
+                var SorgenGesundheitChart = dc.rowChart('#chart-SorgenGesundheit');
+                var WohnortwunschChart = dc.rowChart('#chart-Wohnortwunsch')
+                    .rowsCap(8)
+                    .othersGrouper(false);;
+                var dataCount = dc.dataCount('#data-count'); // was macht das? 
+
+
+
+
+
+
+                GeschlechtChart
+                    .height(210)
+                    .dimension(GeschlechtDim)
+                    .group(countPerGeschlecht)
+                    .innerRadius(50)
+                    .colors(d3.scale.ordinal().range(['#FE642E', '#FA8258', '#F79F81', '#F6D8CE', '#F8E6E0']));
+
+
+
+                AlterChart
+                    .height(210)
+                    .dimension(AlterDim)
+                    .group(countPerAlter)
+                    .innerRadius(50)
+                    .colors(d3.scale.ordinal().range(['#FE642E', '#FA8258', '#F79F81', '#F5BCA9', '#F6D8CE', '#F8E6E0']));
+
+
+                SchultypChart
+                    .height(210)
+                    .dimension(SchultypDim)
+                    .group(countPerSchultyp)
+                    .innerRadius(50)
+                    .colors(d3.scale.ordinal().range(['#FE642E', '#FA8258', '#F79F81', '#F5BCA9', '#F6D8CE', '#F8E6E0']));
+
+                BefragungsjahrChart
+                    .height(210)
+                    .dimension(BefragungsjahrDim)
+                    .group(countPerBefragungsjahr)
+                    .innerRadius(50)
+                    .colors(d3.scale.ordinal().range(['#FE642E', '#F5BCA9', '#FA8258', '#F79F81', '#F6D8CE', '#F8E6E0']));
+
+
+
+                GefallenSchuleChart
+                    .height(210)
+                    .dimension(GefallenSchuleDim)
+                    .group(countPerGefallenSchule)
+                    .ordering(function(d) {
+                        // HIER VERÄNDERT
+                        return customOrder(d.key);
+                    })
+                    .margins({
+                        top: 5,
+                        right: 30,
+                        bottom: -1,
+                        left: 30
+                    })
+                    .title(function(d) {
+                        return d.value
+                    })
+                    .renderTitleLabel(true)
+                    .elasticX(true)
+                    .ordinalColors(['#FE642E', '#FA8258', '#F79F81', '#F5BCA9', '#F6D8CE', '#F8E6E0'])
+                    .xAxis().ticks(0);;
+
+                // HIER VERÄNDERT
+                function customOrder(value) {
+                    switch (value) {
+                        case "Gar nicht gut":
+                            return 0;
+                        case "Eher nicht gut":
+                            return 1;
+                        case "Eher gut":
+                            return 2;
+                        case "Sehr gut":
+                            return 3;
+                        default:
+                            return 4;
+                    }
+                }
+
+
+                AendernSchuleChart
+                    .height(210)
+                    .dimension(AendernSchuleDim)
+                    .group(countPerAendernSchule)
+                    .ordering(function(d) {
+                        return d['Anzahl Random']
+                    })
+                    .margins({
+                        top: 0,
+                        right: 30,
+                        bottom: -1,
+                        left: 30
+                    })
+                    .title(function(d) {
+                        return d.value
+                    })
+                    .renderTitleLabel(true)
+                    .elasticX(true)
+                    .ordinalColors(['#FE642E', '#FA8258', '#F79F81', '#F5BCA9', '#F6D8CE', '#F8E6E0'])
+                    .xAxis().ticks(0);;
+
+
+
+                LieblingsfachChart
+                    .height(210)
+                    .dimension(LieblingsfachDim)
+                    .group(countPerLieblingsfach)
+                    .ordering(function(d) {
+                        // HIER VERÄNDERT
+                        return customOrder2(d.key);
+                    })
+                    .margins({
+                        top: 5,
+                        right: 30,
+                        bottom: -1,
+                        left: 30
+                    })
+                    .title(function(d) {
+                        return d.value
+                    })
+                    .renderTitleLabel(true)
+                    .elasticX(true)
+                    .ordinalColors(['#FE642E', '#FA8258', '#F79F81', '#F5BCA9', '#F6D8CE', '#F8E6E0'])
+                    .xAxis().ticks(0);;
+
+                // HIER VERÄNDERT
+                function customOrder2(value) {
+                    switch (value) {
+                        case "Deutsch":
+                            return 0;
+                        case "Englisch":
+                            return 1;
+                        case "Französisch":
+                            return 2;
+                        case "Musik":
+                            return 3;
+                        case "Mathematik":
+                            return 4;
+                        case "Sport":
+                            return 5;
+                        case "Ein anderes Fach":
+                            return 6;
+                        case "Keine Angabe":
+                            return 7;
+                        default:
+                            return 8;
+                    }
+                }
+
+                BerufswunschChart
+                    .height(210)
+                    .dimension(BerufswunschDim)
+                    .group(countPerBerufswunsch)
+                    .ordering(function(d) {
+                        return d['Anzahl Random']
+                    })
+                    .margins({
+                        top: 5,
+                        right: 30,
+                        bottom: -1,
+                        left: 30
+                    })
+                    .title(function(d) {
+                        return d.value
+                    })
+                    .renderTitleLabel(true)
+                    .elasticX(true)
+                    .ordinalColors(['#FE642E', '#FA8258', '#F79F81', '#F5BCA9', '#F6D8CE', '#F8E6E0'])
+                    .xAxis().ticks(0);;
+
+
+                SorgenSchuleChart
+                    .height(210)
+                    .dimension(SorgenSchuleDim)
+                    .group(countPerSorgenSchule)
+                    .ordering(function(d) {
+                        return d['Anzahl Random']
+                    })
+                    .margins({
+                        top: 0,
+                        right: 30,
+                        bottom: -1,
+                        left: 30
+                    })
+                    .title(function(d) {
+                        return d.value
+                    })
+                    .renderTitleLabel(true)
+                    .elasticX(true)
+                    .ordinalColors(['#FE642E', '#FA8258', '#F79F81', '#F5BCA9', '#F6D8CE', '#F8E6E0'])
+                    .xAxis().ticks(0);;
+
+
+                SorgenAusbildungChart
+                    .height(210)
+                    .dimension(SorgenAusbildungDim)
+                    .group(countPerSorgenAusbildung)
+                    .ordering(function(d) {
+                        return d['Anzahl Random']
+                    })
+                    .margins({
+                        top: 0,
+                        right: 30,
+                        bottom: -1,
+                        left: 30
+                    })
+                    .title(function(d) {
+                        return d.value
+                    })
+                    .renderTitleLabel(true)
+                    .elasticX(true)
+                    .ordinalColors(['#FE642E', '#F5BCA9', '#FA8258', '#F79F81', '#F6D8CE', '#F8E6E0'])
+                    .xAxis().ticks(0);;
+
+
+
+                SorgenFamilieChart
+                    .height(210)
+                    .dimension(SorgenFamilieDim)
+                    .group(countPerSorgenFamilie)
+                    .ordering(function(d) {
+                        return d['Anzahl Random']
+                    })
+                    .margins({
+                        top: 0,
+                        right: 30,
+                        bottom: -1,
+                        left: 30
+                    })
+                    .title(function(d) {
+                        return d.value
+                    })
+                    .renderTitleLabel(true)
+                    .elasticX(true)
+                    .ordinalColors(['#FE642E', '#F5BCA9', '#FA8258', '#F79F81', '#F6D8CE', '#F8E6E0'])
+                    .xAxis().ticks(0);;
+
+
+
+                SorgenBeziehungChart
+                    .height(210)
+                    .dimension(SorgenBeziehungDim)
+                    .group(countPerSorgenBeziehung)
+                    .ordering(function(d) {
+                        return d['Anzahl Random']
+                    })
+                    .margins({
+                        top: 0,
+                        right: 30,
+                        bottom: -1,
+                        left: 30
+                    })
+                    .title(function(d) {
+                        return d.value
+                    })
+                    .renderTitleLabel(true)
+                    .elasticX(true)
+                    .ordinalColors(['#FE642E', '#FA8258', '#F79F81', '#F5BCA9', '#F6D8CE', '#F8E6E0'])
+                    .xAxis().ticks(0);;
+
+
+
+                SorgenFinanzenChart
+                    .height(210)
+                    .dimension(SorgenFinanzenDim)
+                    .group(countPerSorgenFinanzen)
+                    .ordering(function(d) {
+                        return d['Anzahl Random']
+                    })
+                    .margins({
+                        top: 0,
+                        right: 30,
+                        bottom: -1,
+                        left: 30
+                    })
+                    .title(function(d) {
+                        return d.value
+                    })
+                    .renderTitleLabel(true)
+                    .elasticX(true)
+                    .ordinalColors(['#FE642E', '#FA8258', '#F79F81', '#F5BCA9', '#F6D8CE', '#F8E6E0'])
+                    .xAxis().ticks(0);;
+
+
+
+                SorgenGesundheitChart
+                    .height(210)
+                    .dimension(SorgenGesundheitDim)
+                    .group(countPerSorgenGesundheit)
+                    .ordering(function(d) {
+                        return d['Anzahl Random']
+                    })
+                    .margins({
+                        top: 0,
+                        right: 30,
+                        bottom: -1,
+                        left: 30
+                    })
+                    .title(function(d) {
+                        return d.value
+                    })
+                    .renderTitleLabel(true)
+                    .elasticX(true)
+                    .ordinalColors(['#FE642E', '#FA8258', '#F79F81', '#F5BCA9', '#F6D8CE', '#F8E6E0'])
+                    .xAxis().ticks(0);;
+
+
+
+                WohnortwunschChart
+                    .height(210)
+                    .dimension(WohnortwunschDim)
+                    .group(countPerWohnortwunsch)
+                    .ordering(function(d) {
+                        return d['Anzahl Random']
+                    })
+                    .margins({
+                        top: 0,
+                        right: 30,
+                        bottom: -1,
+                        left: 30
+                    })
+                    .title(function(d) {
+                        return d.value
+                    })
+                    .renderTitleLabel(true)
+                    .elasticX(true)
+                    .ordinalColors(['#FE642E', '#FA8258', '#F79F81', '#F5BCA9', '#F6D8CE', '#F8E6E0'])
+                    .xAxis().ticks(0);;
+
+
+
+
+                dataCount
+                    .dimension(ndx)
+                    .group(all);
+
+
+
+                d3.selectAll('a#all').on('click', function() {
+                    dc.filterAll();
+                    dc.redrawAll();
+                });
+
+                d3.selectAll('a#Geschlecht').on('click', function() {
+                    GeschlechtChart.filterAll();
+                    dc.redrawAll();
+                });
+
+                d3.selectAll('a#Alter').on('click', function() {
+                    AlterChart.filterAll();
+                    dc.redrawAll();
+                });
+
+                d3.selectAll('a#Schultyp').on('click', function() {
+                    SchultypChart.filterAll();
+                    dc.redrawAll();
+                });
+
+                d3.selectAll('a#Befragungsjahr').on('click', function() {
+                    BefragungsjahrChart.filterAll();
+                    dc.redrawAll();
+                });
+
+                d3.selectAll('a#GefallenSchule').on('click', function() {
+                    GefallenSchuleChart.filterAll();
+                    dc.redrawAll();
+                });
+
+                d3.selectAll('a#AendernSchule').on('click', function() {
+                    AendernSchuleChart.filterAll();
+                    dc.redrawAll();
+                });
+
+                d3.selectAll('a#Lieblingsfach').on('click', function() {
+                    LieblingsfachChart.filterAll();
+                    dc.redrawAll();
+                });
+
+                d3.selectAll('a#Berufswunsch').on('click', function() {
+                    BerufswunschChart.filterAll();
+                    dc.redrawAll();
+                });
+
+                d3.selectAll('a#SorgenSchule').on('click', function() {
+                    SorgenSchuleChart.filterAll();
+                    dc.redrawAll();
+                });
+
+                d3.selectAll('a#SorgenAusbildung').on('click', function() {
+                    SorgenAusbildungChart.filterAll();
+                    dc.redrawAll();
+                });
+
+                d3.selectAll('a#SorgenFamilie').on('click', function() {
+                    SorgenFamilieChart.filterAll();
+                    dc.redrawAll();
+                });
+
+                d3.selectAll('a#SorgenBeziehung').on('click', function() {
+                    SorgenBeziehungChart.filterAll();
+                    dc.redrawAll();
+                });
+
+                d3.selectAll('a#SorgenFinanzen').on('click', function() {
+                    SorgenFinanzenChart.filterAll();
+                    dc.redrawAll();
+                });
+
+                d3.selectAll('a#SorgenGesundheit').on('click', function() {
+                    SorgenGesundheitChart.filterAll();
+                    dc.redrawAll();
+                });
+
+                d3.selectAll('a#Wohnortwunsch').on('click', function() {
+                    WohnortwunschChart.filterAll();
+                    dc.redrawAll();
+                });
+
+                d3.selectAll('a#Berufswunsch').on('click', function() {
+                    BerufswunschChart.filterAll();
+                    dc.redrawAll();
+                });
+
+
+
+                dc.renderAll();
+                console.log(dc.version);
+            });
+
+            //für das herunterklappbare Feld "Beschreibung"
+            var acc = document.getElementsByClassName("accordion");
+            var i;
+
+            for (i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("mouseenter", function() {
+                    this.classList.toggle("visible");
+                    var panel = this.nextElementSibling;
+
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+
+                });
+                acc[i].addEventListener("mouseleave", function() {
+                    this.classList.toggle("visible");
+                    var panel = this.nextElementSibling;
+
+                    panel.style.maxHeight = null;
+
+
+                });
+            }
+
+        </script>
+    </div>
+
+    <div class="section sectTwo" id="INTERPRETATION">
+        <h1>INTERPRETATION</h1>
+    </div>
+
+    <div class="subSection">
+        <!-- Slideshow container -->
+<!--        <div class="slideshow-container">
+-->
+            <!-- Full-width images with number and caption text -->
+
+<!--
+            <div class="mySlides fader">
+                <div class="numbertext">1 / 4</div>
+                <br/><br/>
+                <img src="/img/img1.jpg" alt="Interpretation" style="width:100%">
+                <br/><br/>
+                <div class="text">
+                </div>
+            </div>
+
+            <div class="mySlides fader">
+                <div class="numbertext">2 / 4</div>
+                <br/><br/>
+                <img src="/img/img2.jpg" alt="Interpretation" style="width:100%">
+                <br/><br/>
+                <div class="text">Werden beim Chart „Wie gefällt es dir in der Schule?“ die Balken „Eher nicht gut“ und „Gar nicht gut“ ausgewählt, sieht man bei den anderen Diagrammen die Angaben von Kindern, denen es in der Schule nicht gefällt. Man kann erkennen, dass es vor allem männlichen Schülern nicht gefällt in der Schule. Zudem wächst der Anteil der Gymnasiasten, was erstaunlich ist, da diese Schüler das Gymnasium freiwillig besuchen. Weiter wächst der Anteil der Kinder, die sich Sorgen um schulische Leistungen machen. Werden Schüler, denen es nicht in der Schule gefällt und die sich keine Sorgen um schulische Leistungen machen ausgewählt, zeigen sich beim Diagramm der Berufswünsche, Berufe im Bereich Bildung an erster Stelle. Ein Ergebnis, das überrascht, da man nicht erwartet, dass Schüler, denen es in der Schule nicht gefällt, den Wunsch haben, später im Bereich der Bildung zu arbeiten.
+                </div>
+            </div>
+
+            <div class="mySlides fader">
+                <div class="numbertext">3 / 4</div>
+                <br/><br/>
+                <img src="/img/img3.jpg" alt="Interpretation" style="width:100%">
+                <br/><br/>
+                <div class="text">Sorgen haben einen positiven Zusammenhang. Werden beispielsweise Schüler ausgewählt, die familiäre Sorgen haben, steigen die die „Ja“-Anteile in den Diagrammen zu den schulischen Sorgen und den Sorgen über die Lehrstelle respektive den Studienplatz. Von den 211 Schülern mit familiären Sorgen, haben mehr als die Hälfte auch Angst um ihre schulischen Leistungen. Vergleicht man die Werte zu den Sorgen zwischen den Jahren 2009 und 2013, kann man erkennen, dass die Sorgen-Anteile über die Zeit leicht abgenommen haben.
+                </div>
+            </div>
+
+            <div class="mySlides fader">
+                <div class="numbertext">4 / 4</div>
+                <br/><br/>
+                <img src="/img/img4.jpg" alt="Interpretation" style="width:100%">
+                <br/><br/>
+                <div class="text">Betrachtet man die Entwicklung der Berufswünsche über die Jahre 2009 bis 2013, kann man eine Veränderung der gewünschten Berufe im Bereich Gesundheit erkennen. Im Jahr 2009 waren Berufe im Bereich Gesundheit die beliebtesten Berufswünsche. Vier Jahre später sind Berufe aus dem Bereich Gesundheit jedoch nur noch auf Platz drei anzutreffen. Auf Platz eins befinden sich Berufe aus dem Bereich Wirtschaft und Verwaltung. Diese Veränderung kann möglicherweise durch den in der Zwischenzeit geschehenen Boom der Wirtschaftsfächer erklärt werden. Interessant wäre es, die Daten aus dem Jahr 2017 zu betrachten, um zu sehen, ob dieser Trend weitergeht.</div>
+            </div>
+-->
+            <!-- Next and previous buttons -->
+ <!--           <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <br>
+-->
+       <!-- The dots/circles -->
+<!--        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+        <script>
+            var slideIndex = 1;
+            showSlides(slideIndex);
+
+            // Next/previous controls
+            function plusSlides(n) {
+                showSlides(slideIndex += n);
+            }
+
+            // Thumbnail image controls
+            function currentSlide(n) {
+                showSlides(slideIndex = n);
+            }
+
+            function showSlides(n) {
+                var i;
+                var slides = document.getElementsByClassName("mySlides");
+                var dots = document.getElementsByClassName("dot");
+                if (n > slides.length) {
+                    slideIndex = 1
+                }
+                if (n < 1) {
+                    slideIndex = slides.length
+                }
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " active";
+            }
+
+        </script>
+    </div>
+-->
+   <!-- <div class="section sectTwo" id="STORY">
+        <h1>STORY</h1>
+    </div>
+
+    <div class="subSection">
+        <h3>Kontakt Data Coach</h3>
+        <p>Zu Beginn der Open Data Übung wurden zuerst die Grundlagen von HTML und CSS behandelt, welche ziemlich gut aufgenommen und schon in einer ersten Übung erfolgreich umgesetzt wurden. Dieser kleine Erfolg hat uns Lust auf mehr gemacht. Daher waren wir sehr motiviert und horchten voller Vorfreude und Motivation den Open Data Coaches aus den verschiedensten Unternehmen, die am 08. März ihre jeweiligen Daten vorstellten. Als Jonas Bieri vom Statistischen Amt des Kantons Basel-Stadt die Daten der Jugendbefragung vorstellte, wussten wir sofort, dass wir gerne damit arbeiten würden und dass wir mit den Antworten, Gedanken, Wünschen und Ängsten der Jugendlichen auch ein Thema wählen, dass uns sehr am Herzen liegt. Nach den Präsentationen durften wir uns Jonas Bieri schliesslich vorstellen und verstanden uns sofort sehr gut. Dies bereitete uns bei der künftigen Zusammenarbeit noch mehr Freude. Am gleichen Tag haben wir schliesslich von ihm die Daten, den Fragebogen den die Jugendlichen ausfüllen mussten und einige Visualisierungsideen bekommen.</p>
+
+        <h3>Konzept, erste Ideen</h3>
+        <p>Als wir die Daten gesehen haben, waren wir im ersten Moment ein wenig überwältigt. Wir wussten zu diesem Zeitpunkt noch nicht, was und wo wir damit anfangen sollten. Wir hofften daher, dass wir in der Übung noch das nötige Wissen erarbeiten würden und haben trotzdem schon einmal angefangen, Visualisierungsideen zu erarbeiten. Da die Fragen aus verschiedenen Themenbereichen stammen, wurde uns schnell klar, dass wir nicht jeweils alle Fragen aus dem Fragebogen visualisieren können. Daher haben wir uns in einem ersten Schritt überlegt, was für eine Geschichte erzählt werden sollte. Welche Fragen machen gemeinsam mit anderen Sinn? Wo vermuten wir, gibt es interessante Ergebnisse? Aus welcher Zusammenstellung der Fragen könnte man etwas lernen, um schliesslich den Jugendlichen zu helfen? Aufgrund dieser und weiterer Fragen wurde uns schliesslich klar, dass wir uns gerne mit den Wünschen und Ängsten der Jugendlichen befassen würden und haben somit ein erstes Set an Fragen aus dem Fragebogen zusammengestellt und dafür drei Visualisierungsideen ausgearbeitet.<br/>
+            <b>Idee 1:</b>&nbsp;Bei der ersten handelt es sich um eine sogenannte <a href=http://bl.ocks.org/wizicer/f662a0b04425fc0f7489 target="_blank" style="color:#666; text-decoration:underline;">Sunburst-Darstellung</a>, bei welcher man vom Kreiskern nach Aussen Abstufungen hat. Somit könnten die abhängigen Variablen für die Visualisierung stufenartig ausgewählt werden. Daneben haben wir uns einen Graphen vorgestellt, der die gewählten Daten über die Jahre anzeigen sollte, je nach dem, was in den Sunburst-Ringen gewählt wurde. Wir wussten bei dieser Darstellung aber auch, dass die Wahl der Abstufungen der Ringe Probleme bereiten würde und dass ein Vergleich verschiedener Variablen relativ schwierig wird.<br/>
+            <b>Idee 2:</b>&nbsp;Aufgrund des obigen Problems haben wir uns auch überlegt, die Daten mit einem sogenannten Crossfilter darzustellen. Dabei wollten wir zuerst die demographischen Daten darstellen, gefolgt von den Wünschen und Ängsten. Durch den Crossfilter kann man dann irgendeine Antwort anklicken und anhand dessen, passen sich alle anderen Antworten darauf an. Den Vorteil dieser Darstellung sahen wir darin, dass die abhängigen Variablen individuell wähl- und kombinierbar sind. Ausserdem kann man sich mit einem Klick gleich anschauen, wie sich die Variablen verändern. Das Problem bei dieser Darstellung sahen wir in der Übersichtlichkeit. Es könnte schwierig sein, alle Variablen auf der Fläche eines Bildschirms darzustellen. Möglicherweise muss gescrollt werden, was es aber schwierig macht, zu sehen, wie sich die Daten bei einem Klick ändern.<br/>
+            <b>Idee 3:</b>&nbsp;Abschliessend ist beim Versuch, die Nachteile der obigen zwei Darstellungen zu beseitigen, die dritte Idee entstanden. Die Sunburst-Darstellung könnte, mit dem Crossfilter Kombiniert werden. Dabei dienen die Sunburst-Ringe als eine Art Filter der Daten wie Geschlecht, Alter, Wohnort etc. Die Ängste und Wünsche wären dann unterhalb dargestellt und sollten sich bei jedem Klick im Sunburst anpassen. Bei dieser Visualisierungsidee ergab sich jedoch das Problem, dass wir uns Sorgen um die Übersichtlichkeit machten und darum, ob wir so etwas Komplexes überhaupt zu Stande bringen würden. Genau bei diesem Punkt waren wir uns nicht sicher, da wir zur gleichen Zeit eine JavaScript-Übung abgeben mussten, welche wegen ihrer Komplexität und dem hohen Schwierigkeitsgrad sehr mitgenommen hat.</p>
+
+        <h3>Erstes Feedback und Rückschlag</h3>
+        <p>Unser Datacoach fand unsere Ideen sehr interessant, versuchte uns aber zu erklären, dass es sehr wichtig ist, mit Daten wie unseren, eine Geschichte erzählen zu können. Wir entschieden uns daher für den Sunburst-Chart, da wir das Gefühl hatten, so die Personengruppen die man sich wünscht, genau wählen zu können, um schliesslich den Verlauf der Antworten über die Jahre zu sehen. Jedoch erlitten wir da einen weiteren Rückschlag. Nach stundenlanger Arbeit haben wir bemerkt, dass es mehr Sinn machen würde, eine andere Visualisierungsart zu wählen, da das Sunburst-Chart es schwierig macht, verschiedene Personenmerkmale zu kombinieren. Wenn man beispielsweise das Geschlecht im ersten Kreis hat, müsste man das Alter bei jedem Geschlecht wiederholt darstellen, dasselbe gilt für jeden weiteren Kreis der folgt. Es wäre sehr schnell unübersichtlich geworden und man hätte beispielsweise nicht alle männlichen bzw. alle weiblichen Schüler anwählen können, sondern nur die in dem spezifischen Alter. Obwohl wir sichtlich genervt waren, haben wir uns davon nicht unterkriegen lassen und die ganze Arbeit für die Crossfilter-Visualisierung erneut erledigt und uns in diese Thematik eingelesen. Während dieser Zeit mussten wir eine weitere Übung Abgeben, mit dem Schwerpunkt auf D3.js, welche uns wieder mehr motivierte, da wir nun endlich anfangen konnten, Ideen auch umzusetzen.</p>
+
+        <h3>Anpassung der Daten und Umsetzung</h3>
+        <p>Wir haben unsere Daten als CSV-Datei am ersten Tag von Jonas Bieri per Mail zugesendet bekommen. Jedes Befragungsjahr ist dabei in einem eigenen Excel-Sheet dargestellt und enthält in jeder Zeile jeweils einen Schüler mit dessen Antworten. Da wir uns aber Gedanken zu den Fragen gemacht haben, brauchten wir zuerst diese spezifischen Daten aus den jeweiligen Sheets. Somit haben wir aus der ursprünglichen CSV-Datei eine neue erstellt, welche wir nur noch online in ein JSON umwandeln mussten. Wir haben uns von einigen Code-Snippets inspirieren lassen und so versucht, eine erste Visualisierung zu erstellen. Dabei sollten oben vier Donut-Charts für das Geschlecht, das Alter, den Schultyp und das Befragungsjahr dargestellt werden und die Fragen jeweils als Balkendiagramme unterhalb. Auch bei der Vorstellung unseres Konzepts im Rahmen der Übungsstunde, wurde uns bestätigt, dass wir auf dem richtigen Weg sind. Da wir in der Übung nun als letzten Schritt auch die Anwendung von Bootstrap erlernt hatten, waren wir vorbereitet für lange Programmiernächte.</p>
+
+        <h3>Erster Durchbruch und erneutes Feedback</h3>
+        <p>Egal was wir versuchten, gelang es uns bei keiner Umsetzung, die Daten in der Visualisierung anzuzeigen. Nach etlichen Versuchen konnte schliesslich einer der vor Ort anwesenden Programmiercoaches herausfinden, an was es lag. Wir hatten ganz einfach den Dateipfad falsch implementiert. Ein kleiner Fehler mit grosser Auswirkung. Als die Visualisierung endlich auf Chrome fertig geladen hatte und wir die zu diesem Zeitpunkt blauen Donut-Charts und Balkendiagramme sahen, war das Glücksgefühl sehr gross. Der ganze Aufwand trägt endlich Früchte. Unser Data-Coach war sehr zufrieden mit unserer bisherigen Leistung, betonte noch einmal die Wichtigkeit einer Geschichte und schlug uns vor, dass man die Jahre auch als Radio-Buttons darstellen konnte, umso nur einzelne Jahre anwählen zu können. Wir haben uns bewusst dagegen entschieden, da wir überzeugt sind, dass (vor allem bei noch mehr Befragungsjahren) das Anwählen mehrerer Jahre durchaus Sinn machen kann. So kann man beispielsweise verfolgen, ob sich die Daten in den Jahren vor oder nach einem wichtigen (evtl. Politischen oder ähnlichem) Ereignis verändert haben. Von unserem Data-Coach motiviert, kamen uns immer mehr Ideen in den Sinn, um die Visualisierung zu verbessern. Zu diesem Zeitpunkt konnten wir uns endlich mit dem Feinschliff beschäftigen.</p>
+
+        <h3>Endspurt..</h3>
+        <p>Die Visualisierung sollte in eine Webseite eingebunden werden, welche die Geschichte über das Projekt, unseren Arbeitsweg, die Interpretation und weiteres erzählt. Da es um Jugendbefragungen ging, wollten wir auch das Design der Seite so gestalten, dass es nicht überladen wirkt. Ausserdem kam uns die Idee, dass wir die Donut- und Balken-Charts so programmieren könnten, dass man sie per Drag and Drop in die gewünschte Position hin und her schieben. Somit kann man die persönlich am relevantesten empfundenen Fragestellungen zu Oberst haben. Nach einer Stunde herumtüfteln kam dann der nächste Erfolg - es funktioniert! Es folgten schliesslich weitere Ideen, wie zum Beispiel das Drop-Down Menü mit der Bedienungsanleitung, oder die Slideshow mit der Interpretation und weitere, mit viel Liebe gestalteten Elemente. Wir sahen endlich unsere Vision, welche wir vor Augen hatten, real werden. Bei jedem noch so kleinen Element, das wir funktionsfähig einfügen konnten, wie beispielsweise die farbliche Anpassung, wurde die Freude grösser. Auch wenn wir immer mehr Ideen haben und ständig an unserer Visualisierung arbeiten könnten, um diese zu erweitern, sind wir sehr stolz auf unsere Arbeit. Nach einigen Rückschlägen haben wir trotzdem nicht aufgegeben und haben wirklich ein Herzensprojekt umsetzen können.</p>
+
+        <h3>Präsentation Bern und Statistiktage Zürich</h3>
+        <p>Das Ziel ist nahe und wir können nach langer Arbeit endlich unser Projekt vorstellen. Da leider die Daten aus dem Jahr beim Statistischen Amt noch in Arbeit sind, werden bei der grossen Präsentation vor allen Data-Coaches und allen Beteiligten der Vorlesung, nur die beiden vorherigen Befragungsjahre vorgestellt. Die Befragungsdaten aus dem Jahr 2017 werden Mitte Juni noch folgen, in die Visualisierung eingepflegt und am 29. August an den Statistiktagen in Zürich vorgestellt. An dieser Stelle möchten wir uns gerne bei unserem Data-Coach, Jonas Bieri, bei unserem Professor, Matthias Stürmer, und den Programmiercoaches bedanken, welche alle stets ein offenes Ohr und eine helfende Hand hatten und uns bei jedem Problem tatkräftig unterstützt haben.</p>
+    </div> -->
+
+   <!--  <div class="section sectThree" id="KONTAKT">
+        <h1>KONTAKT</h1>
+       <br />
+        <br />
+        <br />
+        <!-- <br />
+        <br />-->
+        <!-- <img src="/img/contactphoto.jpg" alt="Kontaktfoto" class="circleimage" /> -->
+   <!--      <table>
+        
+    <tr>
+    <td><img src="/img/EliaSpizzo.png" alt="Interpretation" style="float:center;" class="circleimage"></td>
+    <td><img src="/img/Claudio.png" alt="Interpretation" style="float:center;" class="circleimage"></td>
+  </tr>
+  <tr>
+      <td><p>Elia Spizzo <br/>Vertriebsabteilung <br/>elia.spizzo@supplemento-ag.ch </p></td>
+    <td><p>Claudio Uebelhardt <br/>Finanzabteilung <br/>claudio.uebelhardt@supplemento-ag.ch </p></td>
+   </tr>
+   <tr>
+    <td><img src="/img/Aaron.png" alt="Interpretation" style="float:center;" class="circleimage"> </td>
+    <td><img src="/img/Thierry.png" alt="Interpretation" style="float:center;" class="circleimage"></td>
+  </tr>
+  <tr>
+      <td><p>Aaron Schmid <br/>CEO <br/>aaron.schmid@supplemento-ag.ch </p></td>
+    <td><p>Thierry Jost <br/>Marketingabteilung <br/>thierry.jost@supplemento-ag.ch </p></td>
+   </tr>
+</table>
+      <br/>  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2717.5305955691074!2d7.290243715611938!3d47.0690576791527!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478e181a15c5b573%3A0xd374a46220126af!2sGrenzstrasse+20%2C+3250+Lyss!5e0!3m2!1sde!2sch!4v1560966089281!5m2!1sde!2sch" width="47%" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+        
+        <br/>
+        
+        
+        
+        <style>	
+.wmfg_layout_1, table, .wmfg_textarea { font-family: Verdana, Geneva, sans-serif; font-size: 13px; float:left; }
+.wmfg_layout_1 ul.wmfg_questions { list-style-type: none; margin: 0; padding: 0; }
+.wmfg_layout_1 ul.wmfg_questions li.wmfg_q { margin: 10px 0; }
+.wmfg_layout_1 label.wmfg_label { display: block; margin: 0 0 5px 0; font-weight:bold; float:left; }
+.wmfg_layout_1 table.wmfg_answers { width: 100%; _width: 97%; border-collapse: collapse; }
+.wmfg_layout_1 table.wmfg_answers { vertical-align: top; }
+.wmfg_layout_1 table.wmfg_answers td { padding: 2px; vertical-align: top; }
+.wmfg_layout_1 table.wmfg_answers td.wmfg_a_td { width: 25px; }
+
+.wmfg_layout_1 .wmfg_text { border: 1px solid #CCC; padding: 4px; font-size: 13px; color: #000000; width: 98.5%;
+background-color: #ffffff;
+background:-webkit-gradient(linear,0 0,0 100%,from(#f8f8f8),to(#fff));
+background:-moz-linear-gradient(top,#f8f8f8,#fff);
+}
+.wmfg_layout_1 .wmfg_textarea { border: 1px solid #CCC; padding: 4px; font-size: 13px; color: #000000; width: 98.5%;
+background:-webkit-gradient(linear,0 0,0 100%,from(#f8f8f8),to(#fff));
+background:-moz-linear-gradient(top,#f8f8f8,#fff);
+background-color: #ffffff;
+}
+.wmfg_layout_1 .wmfg_btn { 
+border: 1px solid #cccccc; cursor: pointer; font-weight: normal; font-size: 13px; padding: 6px; color: #444; font-family: 'lucida grande', tahoma, verdana, arial, sans-serif; float:left;
+background: -webkit-gradient(linear, left top, left bottom, from(#FAFAFA), color-stop(0.5, #FAFAFA), color-stop(0.5, #E5E5E5), to(#F9F9F9)); 
+background: -moz-linear-gradient(top, #FAFAFA, #FAFAFA 50%, #E5E5E5 50%, #F9F9F9);
+filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#FAFAFA', endColorstr='#E5E5E5');
+}
+.wmfg_layout_1 .wmfg_btn:hover {  
+background: -webkit-gradient(linear, left top, left bottom, from(#EDEDED), color-stop(0.5, #EDEDED), color-stop(0.5, #D9D9D9), to(#EDEDED)); 
+background: -moz-linear-gradient(top, #EDEDED, #EDEDED 50%, #D9D9D9 50%, #EDEDED);
+filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#E3326E', endColorstr='#D9D9D9'); 
+</style>
+        
+        <div style="width:600px" class="wmfg_layout_1">
+
+<form method="post" action="">
+
+<ul class="wmfg_questions">
+
+	<li class="wmfg_q">
+		<label class="wmfg_label" for="text_id">Name</label>
+		<input type="text" class="wmfg_text" name="text_name" id="text_id" value="" />
+	</li>
+
+	<li class="wmfg_q">
+		<label class="wmfg_label" for="text_id">E-Mail-Adresse</label>
+		<input type="text" class="wmfg_text" name="text_name" id="text_id" value="" />
+	</li>
+
+	<li class="wmfg_q">
+		<label class="wmfg_label" for="textarea_id">Ihre Nachricht</label>
+		<textarea class="wmfg_textarea" name="textarea_name" id="textarea_id" style="height:80px"></textarea>
+	</li>
+    
+
+	<li class="wmfg_q">
+		<input type="submit" class="wmfg_btn" name="submit_name" id="submit_id" value="Senden" />
+	</li>
+
+</ul>
+
+</form>
+
+        </div>
+        <!--<a id="22bb7219689dda5f732d7f0dfd1aed6f" href="http://www.gratis-kontaktformular.de">gratis-kontaktformular.de</a><script src="https://www.gratis-kontaktformular.de/formular.php?i=22bb7219689dda5f732d7f0dfd1aed6f" type="text/javascript"></script>--><!--<img src="/img/Kontaktformular.JPG" alt="Interpretation" style="float:center; width:47%">-->
+       <!-- <table>
+            <tr>
+                <td>Erster Name&nbsp;</td>
+                <td>&nbsp;Zweiter Name</td>
+            </tr>
+            <tr>
+                <td>Schüler KV, Lyss&nbsp;</td>
+                <td>&nbsp;Schüler KV, Lyss</td>
+            </tr>
+            <tr>
+                <td>E-Mail-Adreasse1&nbsp;&nbsp;</td>
+                <td>&nbsp;&nbsp;E-Mail-Adresse2</td>
+            </tr>
+        </table>-->
+ <!--    </div>
+
+    <div class="subSectionBlack">
+        <p><br/>
+            <img src="/img/Zahlung.png" alt="Interpretation" style="float:right;" >
+           
+            <a href=https://github.com/MayraSp/Supplemento/raw/master/img/Bestellformular.pdf/ target="_blank" style="text-decoration:underline;">Bestellformular</a><br/>
+           <font style="color:black;"> Hier kann man nützliche Links einfügen. Hier kann man nützliche Links einfügen. Hier kann man nützliche Links einfügen. Hier kann man nützliche Links einfügen. Hier kann man nützliche Links einfügen.Hier kann man nützliche Links einfügen. Hier kann man nützliche Links einfügen. Hier kann man nützliche Links einfügen. </font>
+            <!--<a href=https://github.com/MayraSp/Jugendbefragung/raw/master/OGD_Jugendbefragung_2009_2013.xlsx/ target="_blank" style="text-decoration:underline;">Daten</a> &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href=http://www.statistik.bs.ch/befragungen/kantonal/jugendbefragung/ target="_blank" style="text-decoration:underline;">Jugendbefragung</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=http://www.statistik.bs.ch/dam/jcr:ab0bedb8-1a92-4d7f-b5a0-58233a8d3fcb/FB-Jugend-2013.pdf/ target="_blank" style="text-decoration:underline;">Fragebogen</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=http://www.statistik.bs.ch// target="_blank" style="text-decoration:underline;">Statistisches Amt des Kantons Basel-Stadt</a><br/>
+            <a href=http://www.digitale-nachhaltigkeit.unibe.ch/studium/open_data_vorlesung/index_ger.html// target="_blank" style="text-decoration:underline;">Open Data Vorlesung</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href=http://www.digitale-nachhaltigkeit.unibe.ch/studium/open_data_vorlesung/veranstaltung_2018/index_ger.html// target="_blank" style="text-decoration:underline;">Open Data Veranstaltung 2018</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href=http://opendata.iwi.unibe.ch/?orderBy=-date_publish// target="_blank" style="text-decoration:underline;">Open Data Showroom</a>-->
+<!--         </p>
+        <p>Copyright © 2019 Elia Spizzo
+            <br/><a href=https://github.com/MayraSp/Supplemento/raw/master/img/Bestellformular.pdf/ target="_blank" style="text-decoration:underline;">Bestellformular</a><br/>Die Webseite untersteht der GNU General Public License <a href=https://opensource.org/licenses/LGPL-3.0 target="_blank" style="text-decoration:underline;">(GNU GPL)</a></p>
+    </div>
+-->
+
+</body>
+
+</html>
