@@ -1,0 +1,11 @@
+{
+"title": "Jugendbefragung des Kantons Basel-Stadt",
+"description": "Die Jugendbefragung mittels Fragebogen erfolgt durch das Statistische Amt des Kantons Basel-Stadt in diversen, zufällig ausgewählten Basler Schulen. Durchgeführt wurden diese Erhebungen derweil in den Jahren 2009, 2013 und 2017 mit Jugendlichen zwischen 12 bis 17 Jahren. Durch die Befragung können die Schüler ihre Bedürfnisse, Wünsche und Ansprüche mitteilen, indem sie ca. 75 Fragen zu diversen Themen beantworten. Anhand der Antworten der Jugendlichen kann man schliesslich sehen, wo es Kritik und Probleme gibt, um so gemeinsam eventuelle Verbesserungsmöglichkeiten ausarbeiten zu können.",
+"authors": [
+    {"name": "Mayra Spizzo", "email": "od.mayra.spizzo@gmail.com"},
+    {"name": "Ana Dejanovic", "email": "od.ana.dejanovic@gmail.com"}
+],
+"date": "2018-05-31",
+"category": "education",
+"software_license": "GNU General Public License v3"
+}
